@@ -26,7 +26,7 @@ namespace find_my_restaurant
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddScoped<Data.MongoDB>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
