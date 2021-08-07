@@ -10,16 +10,17 @@ namespace find_my_restaurant.Data
     public class MongoDB
     {
         public IMongoDatabase DB { get; }
+
         public MongoDB(IConfiguration configuration)
         {
             try
             {
-                var settings = MongoClientSettings.FromUrl(new MongoUrl(configuration["ConnectionString:URL"]));
+                var settings = MongoClientSettings.FromUrl(new MongoUrl(configuration["MongoConnection:ConnectionStrings"]));
                 var client = new MongoClient(settings);
                 DB = client.GetDatabase(configuration["DBName"]);
                 MapClasses();
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 throw new MongoException("It was not possible to connect to MongoDB", ex);
             }
